@@ -1,0 +1,50 @@
+.mainTitle{
+	color: rgb(0, 64, 133);
+	text-decoration: none;
+  }
+  
+  .mainTitle:hover {text-decoration: none;}
+  
+
+body {
+	width: 100%;
+	/* background-color: rgb(45,55,65); */
+}
+
+.header-frame {
+	top: 100px;
+	width: 85%;
+	border-radius: 7px;
+	border-style: solid;
+	border-color: rgb(150, 150, 150);
+	padding: 15px;
+	display: flex;
+	justify-content: space-between;
+	/* background-color: rgb(200,200,200,0.1); */
+	background-color: rgb(242, 242, 242);
+}
+
+.font-user1 {
+	font-size: 2.3rem;
+	color: rgb(0, 32, 96);
+	font-weight: 500;
+}
+
+.frame60 {
+	width: 85%;
+}
+
+
+.mibalogo {
+	height: 60px;
+}
+
+
+.y-align-bottom {
+	vertical-align: bottom;
+}
+
+.logInButton {
+	padding-top: 2px;
+	max-height: 30px;
+}

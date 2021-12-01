@@ -1,0 +1,79 @@
+.my-legend .legend-title {
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 90%;
+  padding: 5 0 2 5;
+  border-top-left-radius: 4% 84%;
+  border: 5px;
+  background-color: rgb(249 217 136) !important;
+}
+
+.my-legend .legend-scale ul {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+}
+.my-legend .legend-scale ul li {
+  display: block;
+  float: left;
+  width: 50px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 80%;
+  list-style: none;
+}
+.my-legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 15px;
+  width: 50px;
+}
+.dateFont {
+  font-weight: bold;
+  text-align: center;
+}
+@media only screen and (max-width: 1150px) {
+  .color_cream {
+    height: 8rem;
+  }
+}
+@media only screen and (max-width: 920px) {
+  .color_cream {
+    height: 11rem;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .color_cream {
+    height: 12.5rem;
+  }
+}
+@media only screen and (max-width: 690px) {
+  .color_cream {
+    height: 12.5rem;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .color_cream {
+    height: 15rem;
+  }
+  
+}
+// #histogramIcon:hover {
+//   color: rgb(47, 54, 174) !important;
+// }
+#btnHistogram{
+  background-color: whitesmoke;
+  border-radius: 2.1rem !important;
+  border: solid 2px whitesmoke;
+
+}
+#btnHistogram:hover
+{
+  border: solid 2px rgb(47, 54, 174) !important;
+  color: rgb(47, 54, 174) !important;
+
+}
+
