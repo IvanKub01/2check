@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <title>HeatChart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<link rel="stylesheet" href="../static/css/mojestyly.scss">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/css/bootstrap.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.7.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script>
+<script src="../static/js/jscriptik.js"></script>
+<link rel="obrlong" href="U:\mahlo2\mahlo2\static\img\moj.png">
+
+<script src="https://kit.fontawesome.com/1ba097df4d.js" crossorigin="anonymous"></script>
+<script src="../static/js/monitoringScripts.js"></script>
+
+
+<body onload="SendUserName(true);" style="position: relative;">
+
+    <div class="loader" hidden></div>
+
+    <nav class=" noPad navbar navbar-expand-lg navbar-light mibablueSky">
+        <button class="navbar-toggler m-2 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon m-2" style=" color: #661616 !important;;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a type="button" class="btn btn-sm nav-link mibaBlue  fll m-2 active " href="/nahled">NÁHLED</a>
+                </li>
+                <li class="nav-item">
+                    <a id="getRow" type="button" class="btn btn-sm nav-link mibaBlue m-2 fll active" href="/live"><span
+                            class="liveclassa">LIVE <i class="fas fa-circle" style="color: #fb5e5e;"></i></span> NÁHLED
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="adding" class=" btn btn-sm nav-link mibaBlue m-2 fll active" href="/adding">PŘIDAT</a>
+                </li>
+                <li class="nav-item">
+                    <a id="TMid" class=" btn btn-sm nav-link mibaBlue m-2 fll active" href="/TrecieMaterialy">FP</a>
+                </li>
+            </ul>
+        </div>
+        <a class="navbar-brand  p-2" style=" position: absolute;top: 0px;right: 0px;" href="#">
+            <div class="blur">
+                <img src="../static/img/logoMiba.png" width="auto" height="25" alt="">
+            </div>
+        </a>
+    </nav>
+    <div style="padding: 0.5%;">
+        <table>
+
+            <thead>
+                <tr>
+                    <th class="p-1  feedb-head" style="border: 5px solid white;" scope="row">Typ měření</th>
+
+                    <th class="p-1  feedb-head" style="border: 5px solid white;" scope="row">Production run</th>
+
+                    <th class="p-1  feedb-head" style="border: 5px solid white;" scope="row">Datum</th>
+                    <th class="p-1  feedb-head" style="border: 5px solid white;" scope="row">Soubor</th>
+                </tr>
+
+
+            </thead>
+            <tbody>
+                <form action="/pridaj" method="POST" enctype="multipart/form-data">
+                    <tr>
+                        <td style="border: 5px solid white;">
+                            <div class="form-group">
+                                <select id="listTypovPridaj" name="NameTypNahled">
+                                    {% for item in listOfPDruh %}
+                                    <option value='{{ item[1] }}'>{{ item[0] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </td>
+                        <td style="border: 5px solid white;">
+                            <div class="form-group">
+                                <input type="number" class="text-field1 d-inline-block" list='DataPRunList' name="rnm"
+                                    id="tt" min="0" oninput="validity.valid||(value='');" required>
+                                <datalist id="DataPRunList">
+                                    {% for item in listOfPRun %}
+                                    <option value='{{ item[0] }}'>
+                                        {% endfor %}
+                                </datalist>
+                            </div>
+                        </td>
+
+                        <td style="border: 5px solid white;">
+                            <div class="form-group">
+                                <input type="date" class="text-field1 d-inline-block" name="dt" id="dateOfRn" required>
+                            </div>
+                        </td>
+                        <td style="border: 5px solid white;">
+                            <div class="form-group">
+                                <div>
+
+                                    <input type="file" class=" fll text-field1 d-inline-block" id="fpicker"
+                                        name="file[]" accept="text/plain" required>
+
+                                </div>
+                            </div>
+                        </td>
+                        <td style="border: 5px solid white;">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-sm">Nahrát</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>{% with messages = get_flashed_messages() %}
+                            {% if messages %}
+
+                            {% for message in messages %}
+                            <p class="p-1" style="color: red;">{{ message }}</p>
+                            {% endfor %}
+
+                            {% endif %}
+                            {% endwith %}
+                            {% block body %}{% endblock %}
+                        </td>
+                    </tr>
+                </form>
+
+                </tr>
+            </tbody>
+
+        </table>
+
+
+</body>
+</body>
+
+</html>

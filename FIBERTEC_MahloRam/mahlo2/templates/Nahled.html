@@ -1,0 +1,383 @@
+<html>
+<script></script>
+
+<head>
+  <title>HeatChart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<link rel="stylesheet" href="../static/css/mojestyly.scss">
+<link rel="stylesheet" href="../static/css/nahled.scss">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" media="all"
+  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.7.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script>
+<script src="../static/js/jscriptik.js"></script>
+<link rel="obrlong" href="U:\mahlo2\mahlo2\static\img\moj.png">
+<script src="https://kit.fontawesome.com/1ba097df4d.js" crossorigin="anonymous"></script>
+<script src="../static/js/monitoringScripts.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+<body onload="SendUserName(true);" style="position: relative;">
+
+  <div class="loader" hidden></div>
+
+  <nav class=" noPad navbar navbar-expand-lg navbar-light mibablueSky">
+    <button class="navbar-toggler m-2 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon m-2" style=" color: #661616 !important;;"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a type="button" class="btn btn-sm nav-link mibaBlue  fll m-2 active " href="/nahled">NÁHLED</a>
+        </li>
+        <li class="nav-item">
+          <a id="getRow" type="button" class="btn btn-sm nav-link mibaBlue  m-2 fll active" href="/live"><span
+              class="liveclassa">LIVE <i class="fas fa-circle" style="color: #fb5e5e;"></i></span> NÁHLED </a>
+        </li>
+        {% if( admin == "1") %}
+        <li class="nav-item">
+          <a id="adding" class=" btn btn-sm nav-link mibaBlue   m-2 fll active" href="/adding">PŘIDAT</a>
+        </li>
+        <li class="nav-item">
+          <a id="TMid" class=" btn btn-sm nav-link mibaBlue  m-2 fll active" href="/TrecieMaterialy">FP</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <a class="navbar-brand  p-2" style=" position: absolute;top: 0px;right: 0px;" href="#">
+      <div class="blur">
+        <img src="../static/img/logoMiba.png" width="auto" height="25" alt="">
+      </div>
+    </a>
+  </nav>
+  <div class="w-100">
+
+    <div class=" flr color_cream">
+
+      <div class='my-legend '>
+        <div class='legend-title'>Škála <span id="skalaNahled">váhy </span> <button id="btnHistogram"
+            data-bs-toggle="modal" data-bs-target="#settingsModalHist">
+            <i id="histogramIcon" class="fas fa-chart-bar"></i></button></div>
+        <div class='legend-scale'>
+          <ul class='legend-labels'>
+            <div class="d-inline-block">
+              <li style="text-align: center;"><span style='background:rgb(15, 182, 173);'></span>Under</li>
+              <li style="text-align: left;"><span style='background:rgb(15, 182, 173);'></span>LTL</li>
+              <li><span style='background:#f5deb3;'></span> </li>
+            </div>
+            <div class="d-inline-block">
+              <li><span style='background:#FCFF3E;'></span>.</li>
+              <li><span style='background:#E0EC37;'></span></li>
+              <li><span style='background:#C3D92F;'></span></li>
+              <li><span style='background:#A6C627;'></span></li>
+              <li><span style='background:#89B31F;'></span>.</li>
+            </div>
+            <div class="d-inline-block">
+              <li><span style='background:#6DA118;'></span></li>
+              <li><span style='background:#42850D;'></span>Within </li>
+              <li><span style='background:#166801;'></span>LTL&UTL</li>
+              <li><span style='background:#42850D;'></span></li>
+              <li><span style='background:#6DA118;'></span></li>
+            </div>
+            <div class="d-inline-block">
+              <li><span style='background:#9b921c;'></span>.</li>
+              <li><span style='background:#a18118;'></span></li>
+              <li><span style='background:#a16618;'></span></li>
+              <li><span style='background:#a14e16;'></span></li>
+              <li><span style='background:#a13f18;'></span>.</li>
+
+            </div>
+
+
+            <div class="d-inline-block">
+              <li><span style='background:#f5deb3;'></span></li>
+              <li style="text-align: center;"><span style='background:#FF0000;'></span>Over</li>
+              <li style="text-align: left;"><span style='background:#FF0000;'></span>UTL</li>
+            </div>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="flr m-3">
+      <div class=" mibaYellow_ltl_utl_nahled">
+        <div class="d-inline-block">
+          <button id="settings" type="button" class="btn noPadtb miba flr marSpustit WS " data-bs-toggle="modal"
+            data-bs-target="#settingsModal">NASTAV <i class="fas fa-sliders-h"></i></button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
+  <div>
+
+  </div>
+  <div class="container d-flex">
+    <div class="row" style="position: absolute; float:left">
+      <div class="span4">
+        <img src="" id="NahledImgHeat" alt="" class="center-block" hidden>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MODAL SETTINGS  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
+  <div id="settingsModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- data-backdrop="static" data-keyboard="false" -->
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 500px; max-width: unset;">
+      <div class="modal-content">
+        <div class="modal-header-yellow">
+          <h6 class="d-inline-block modal-title ptx" id="ModalLabelLogin">Nastavení programu</h6>
+          <span class="d-inline-block close" data-bs-dismiss="modal" aria-label="Close"><strong>&times;</strong></span>
+        </div>
+        <div id="modalBody" class="modal-body p-5 bg-light">
+          <div class="form-group row mt-4">
+            <div class="col">
+              <label class="modalLabel" for="NameTypNahled" class="w-50">Typ měření</label>
+
+
+              <select id="NahledModalNastavenieTyp" class="w-50" style="float: right;" onchange="setOptionTM(this);"
+                name="NameTypNahled">
+                {% for item in listOfPDruh %}
+                <option value='{{ item[1] }}'>{{ item[0] }}</option>
+                {% endfor %}
+              </select>
+              <div class="flr w-100 " id="pripojTyp"></div>
+
+            </div>
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+              <div class="form-check d-inline-flex">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="modalLabel" class="form-check-label" for="flexRadioDefault1" style="padding-left: 5px;">
+                  Production run
+                </label>
+              </div>
+              <div class="form-check d-inline-flex float-end w-50">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="modalLabel" class="form-check-label" for="flexRadioDefault2" style="padding-left: 5px;">
+                  Datum
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+              <label class="modalLabel" for="NahledModalNastaveniePR">Production run</label>
+              <div class="w-50" style="float: right;">
+                <input type="number" id="NahledModalNastaveniePR" class="w-100" list="colours" required disabled>
+
+                <datalist id="colours">
+                  {% for item in listOfPRun %}
+                  <option value='{{ item[0] }}'>{{ item[0] }}</option>
+                  {% endfor %}
+                </datalist>
+              </div>
+              <div class="flr w-100 " id="pripoj">
+
+              </div>
+            </div>
+            <!-- <input id="productionRun" type="number" class="form-control w-50" min="0" oninput="validity.valid||(value='');" value="251" required> -->
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+
+              <label class="modalLabel" for="dateOfNahled">Datum</label>
+              <input class="w-50" style="float: right;" id="dateOfNahled" readonly='true' required>
+
+              <div class="flr w-100 " id="pripojDatum"></div>
+
+
+            </div>
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+              <label class="modalLabel" for="NahledModalNastavenieZacatek">Začátek</label>
+              <input type="time" onchange="nastavMinKonce(this);" min="00:00" value="00:00" class="w-50"
+                style="float: right;" id="NahledModalNastavenieZacatek" required>
+
+
+            </div>
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+
+              <label class="modalLabel" for="NahledModalNastavenieKonec">Konec</label>
+              <input type="time" min="07:00" max="24:00" value="23:59" onchange="enforceMinMax(this);" class="w-50"
+                style="float: right;" id="NahledModalNastavenieKonec" required>
+
+
+
+            </div>
+          </div>
+          <div class="form-group row mt-4">
+            <div class="col">
+
+              <label class="modalLabel" for="listTrecMat">FP</label>
+              <select id="listTrecMat" class="w-50" style="float: right;" onchange="setParUTLandLTL(this);"
+                name="NameTrecMatNahled">
+
+
+
+
+                <option value="" selected disabled hidden>Vyberte třecí materiál</option>
+                {% for item in listOfTrec %}
+                {% if( item[0] == 1) %}
+                <option value='{"val":"{{ item[0] }}","ltl":"{{ item[2] }}","utl":"{{ item[3] }}"}' class="WEIGHT2">
+                  {{ item[1] }}</option>
+                {% elif( item[0] == 2) %}
+                <option value='{"val":"{{ item[0] }}","ltl":"{{ item[2] }}","utl":"{{ item[3] }}"}'
+                  class="THICKNESS2 d-none">{{ item[1] }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+
+
+            </div>
+          </div>
+
+
+          <div class="form-group row mt-4">
+            <div class="col">
+              <label for="ltl">LTL</label>
+              <input id="ltl" type="number" step="0.01" class="form-control " min="0"
+                oninput="validity.valid||(value='');" value="438.9034" required>
+
+            </div>
+
+            <div class="col">
+              <label for="utl">UTL</label>
+              <input id="utl" type="number" step="0.01" class="form-control" min="0"
+                oninput="validity.valid||(value='');" value="474.8431" required>
+              <div class="flr w-100 " id="pripojUTLLTL"></div>
+
+            </div>
+          </div>
+
+
+          <div class="mt-4 d-flex justify-content-center">
+            <button id="start" type="button" class="btn btn-success w-25 me-2">UKAŽ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ MODAL SETTINGS HISTOGRAM  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ -->
+  <div id="settingsModalHist" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- data-backdrop="static" data-keyboard="false" -->
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width: 37rem;  max-width: unset;">
+      <div class="modal-content">
+        <div class="modal-header-yellow">
+          <h6 class="d-inline-block modal-title ptx" id="ModalLabelHist">Histogram</h6>
+          <span class="d-inline-block close" data-bs-dismiss="modal" aria-label="Close"><strong>&times;</strong></span>
+        </div>
+        <div id="modalBodyHist" class="modal-body p-5 bg-light">
+          <img src="" id="NahledImgHist" width="500rem" height="500rem" alt="" hidden>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+
+
+  if ("{{ flash_message }}" == "1") {
+    // console.log("ssss");
+  } else {
+    console.log("{{ flash_message }}");
+  }
+
+</script>
+<script>
+
+  $(document).ready(function () {
+
+
+    $.ajax({
+      url: "/getDates",
+      type: "POST",
+      success: function (data) {
+        dates = data;
+
+      },
+    });
+  });
+  var dates;
+  function nastavMinKonce(sel) {
+    var el = $("#NahledModalNastavenieKonec")[0];
+    $("#NahledModalNastavenieKonec").attr({
+      // substitute your own
+      "min": sel.value         // values (or variables) here
+    });
+    enforceMinMax(el);
+  }
+  function enforceMinMax(el) {
+
+    var dateEndChoosen = new Date("11/21/1987 " + el.value + "");
+    var dateEndMin = new Date("11/21/1987 " + el.min + "");
+
+    if (el.value != "") {
+      if (dateEndChoosen < dateEndMin) {
+        el.value = el.min;
+      }
+
+    }
+  }
+  $("body").delegate("#dateOfNahled", "focusin", function () {
+    $(this).datepicker({
+      dateFormat: 'dd/mm/yy',
+      beforeShowDay: function (date) {
+        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+
+        return [dates.indexOf(string) != -1]
+      }
+    });
+  });
+  function setParUTLandLTL(sel) {
+    TMDict = JSON.parse(sel.value);
+    $('#ltl').val(TMDict.ltl);
+    $('#utl').val(TMDict.utl);
+  }
+  function setOptionTM(sel) {
+    $("#listTrecMat").val($("#listTrecMat option:first").val());
+    if (sel.value == 1) {
+      $(document).find('#skalaNahled').html("váhy  ");
+      $(document).find('.WEIGHT2').removeClass("d-none");
+      $(document).find('.THICKNESS2').addClass("d-none");
+
+    } else if (sel.value == 2) {
+      $(document).find('#skalaNahled').html("tloušťky  ");
+      $(document).find('.WEIGHT2').addClass("d-none");
+      $(document).find('.THICKNESS2').removeClass("d-none");
+    } else {
+      $(document).find('.WEIGHT2').addClass("d-none");
+      $(document).find('.THICKNESS2').addClass("d-none");
+      if (sel.value == 3) {
+        $(document).find('#skalaNahled').html("vlhkosti  ");
+
+      } else {
+        $(document).find('#skalaNahled').html("váhy  ");
+
+      }
+    }
+  }
+</script>
+
+</html>

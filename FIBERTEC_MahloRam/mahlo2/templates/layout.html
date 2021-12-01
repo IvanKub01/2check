@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HeatChart</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5">
+
+<link rel="stylesheet" href="../static/css/mojestyly.scss">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/css/bootstrap.min.css" />
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" media="all"
+    href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.7.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta2/js/bootstrap.min.js"></script>
+<script src="../static/js/jscriptik.js"></script>
+<link rel="obrlong" href="U:\mahlo2\mahlo2\static\img\moj.png">
+<script src="https://kit.fontawesome.com/1ba097df4d.js" crossorigin="anonymous"></script>
+<script src="../static/js/monitoringScripts.js"></script>
+
+<body onload="SendUserName(true);" style="position: relative;">
+
+    <div class="loader" hidden></div>
+
+    <nav class=" noPad navbar navbar-expand-lg navbar-light mibablueSky">
+        <button class="navbar-toggler m-2 " style="background-color:#040b9e;border: solid #02065d;" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon m-2" style=" color: #661616 !important;;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a type="button" class="btn btn-sm nav-link mibaBlue  fll m-2 active " href="/nahled">NÁHLED</a>
+                </li>
+                <li class="nav-item">
+                    <a id="getRow" type="button" class="btn btn-sm nav-link mibaBlue m-2 fll active" href="/live"><span
+                            class="liveclassa">LIVE <i class="fas fa-circle" style="color: red;"></i></span> NÁHLED </a>
+                </li>
+                <li class="nav-item">
+                    <a id="adding" class=" btn btn-sm nav-link mibaBlue m-2 fll active" href="/adding">PŘIDAT</a>
+                </li>
+                <li class="nav-item">
+                    <a id="TMid" class=" btn btn-sm nav-link mibaBlue m-2 fll active" href="/TrecieMaterialy">TM</a>
+                </li>
+            </ul>
+        </div>
+        <a class="navbar-brand  p-2" style=" position: absolute;top: 0px;right: 0px;" href="#"> <img
+                src="../static/img/logo.gif" width="42" height="40" alt=""></a>
+    </nav>
+</body>
+
+</html>
